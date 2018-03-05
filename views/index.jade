@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  h1 S3 Upload
+  form#s3form(action="http://#{bucketName}.s3.amazonaws.com/", method="post", enctype="multipart/form-data")
+    input(type="hidden", name="key", value="")
+    input(type="hidden", name="success_action_redirect", value="")
+    input(type="hidden", name="Content-Type", value="application/octet-stream")
+    input(type="hidden", name="X-Amz-Credential", value="")
+    input(type="hidden", name="X-Amz-Algorithm", value="AWS4-HMAC-SHA256")
+    input(type="hidden", name="X-Amz-Date", value="")
+    input(type="hidden", name="Policy", value="")
+    input(type="hidden", name="X-Amz-Signature", value="")
+
+    p
+      b Pick A File: 
+      input#s3file(name="file", type="file")
+    p
+      button#upload-file Upload
+
+  script(src="/javascripts/jquery.js")
+  script(src="/javascripts/upload.js")
+  script.
+    $(function(){
+      Uploader.start();
+    });
